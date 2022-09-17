@@ -9,3 +9,5 @@ function solution(x, n) {
   }
   return answer;
 }
+
+console.log(Number.isInteger(Number("t")));
