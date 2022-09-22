@@ -39,3 +39,17 @@ function solution(s) {
   return answer;
   // 뱐걍
 }
+
+function* genre() {
+  yield 1;
+  yield 2;
+  yield 3;
+  yield 4;
+  yield 5;
+  yield 6;
+}
+console.log(genre().next());
+
+for (const a of genre()) {
+  console.log(a);
+}
