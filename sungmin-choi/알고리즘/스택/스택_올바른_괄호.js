@@ -4,7 +4,7 @@ function solution(s) {
     if (a === "(") answer.push(a);
     else {
       if (answer.length === 0) return false;
-      if (answer[answer.length - 1] === "(") answer.pop();
+      answer.pop();
     }
   }
   return answer.length > 0 ? false : true;
