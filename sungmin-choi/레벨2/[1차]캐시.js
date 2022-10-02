@@ -23,7 +23,7 @@ class LRU {
     let node = this.map.get(key);
     this.breakAndLink(node);
     this.insertFront(node);
-    return node.val;
+    return 1;
   }
 
   breakAndLink(node) {
@@ -65,12 +65,14 @@ function solution(cacheSize, cities) {
   let answer = 0;
   const lruCache = new LRU(cacheSize);
   for (const city of cities) {
-    if (lruCache.get(city)) {
+    if (lruCache.get(city.toLowerCase())) {
       answer += 1;
     } else {
-      lruCache.put(city);
+      lruCache.put(city.toLowerCase(), 1);
       answer += 5;
     }
   }
   return answer;
 }
+
+console.log(solution(2, ["Jeju", "Pangyo", "NewYork", "newyork"]));
