@@ -1,34 +1,23 @@
-def solution(progresses, speeds):
-    n = len(progresses)
-    answer=[]
-    import math
-    from collections import deque
-    
-    progresses = deque(progresses)
-    speeds = deque(speeds)
-    total_time = deque([])
-    left_time = 0
-    while progresses:
-        p = progresses.popleft()
-        print()
-        s = speeds.popleft()
-        print(f"p={p} ; progresses={progresses} ; answer={answer}")
-        t_answer = 1
-        left_time += math.ceil((100-p)//s)
-        for i in range(len(progresses)):
-            progresses[i] += left_time*speeds[i]
-
-        if(p >= 100):
-            while len(progresses)>0 and progresses[0] >= 100:
-                print(f"t_answer={t_answer}")
-                p = progresses.popleft()
-                print(f"t_answer={progresses[0]}")
-                speeds.popleft()
-                t_answer += 1
-        answer.append(t_answer)
-    
+answer = 0
+def dfs(current_row, previous_col, score, land):
+    global answer
+    if current_row >= len(land):
+        if answer<score:
+            answer=score
+    else:
+        for i in range(4):
+            if (i != previous_col):
+                dfs(current_row+1, i, score+land[current_row][i], land)            
+                 
+def solution(land):
+    """
+    1. N행 4열
+    2. 한 행씩 내려옴
+    3. 같은 열을 연속해서 밟을 수 없음
+    """
+    global answer
+    for i, s in enumerate(land[0]):
+        dfs(current_row=0, previous_col=i, score=0, land=land)
+        print(f"answer={answer}")
     return answer
 
-# temp = solution([93, 30, 55],[1, 30, 5])
-temp = solution([95, 90, 99, 99, 80, 99],[1, 1, 1, 1, 1, 1])
-print(temp)
