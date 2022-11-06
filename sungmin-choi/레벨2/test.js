@@ -23,15 +23,7 @@ class Clock {
     console.log(output);
   }
 
-  stop() {
-    clearInterval(this.timer);
-  }
 
-  start() {
-    this.render();
-    this.timer = setInterval(() => this.render(), 1000);
-  }
-}
 
 class ExtendedClock extends Clock {
   constructor({ template, precision }) {
