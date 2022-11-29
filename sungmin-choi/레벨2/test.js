@@ -1,44 +1,9 @@
-class Clock {
-  constructor({ template }) {
-    this.template = template;
-  }
+function Profile() {
+  const foo = useAsyncValue(() => {
+    return fetchFoo();
+  }); // 비동기처리를 리액트 훅 으로 작성.
 
-  render() {
-    let date = new Date();
-
-    let hours = date.getHours();
-    if (hours < 10) hours = "0" + hours;
-
-    let mins = date.getMinutes();
-    if (mins < 10) mins = "0" + mins;
-
-    let secs = date.getSeconds();
-    if (secs < 10) secs = "0" + secs;
-
-    let output = this.template
-      .replace("h", hours)
-      .replace("m", mins)
-      .replace("s", secs);
-
-    console.log(output);
-  }
-
-
-
-class ExtendedClock extends Clock {
-  constructor({ template, precision }) {
-    super({ template });
-    this.precision = precision ? precision : 1000;
-  }
-  start() {
-    this.render();
-    this.timer = setInterval(() => this.render(), this.precision);
-  }
+  if (foo.error) return <p>실패</p>;
+  if (!foo.data) return <p>데이터 불러오는 중...</p>;
+  return <div>{foo.data.name}님 안녕하세요.</div>;
 }
-
-let lowResolutionClock = new ExtendedClock({
-  template: "h:m:s",
-  precision: 2000,
-});
-
-lowResolutionClock.start();
