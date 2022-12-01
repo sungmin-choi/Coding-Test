@@ -8,6 +8,7 @@ class LRU {
     this.tail.prev = this.head;
   }
 
+  // 캐시하는법
   put(key, val) {
     let node = new Node(key, val);
     this.map.set(key, node);
