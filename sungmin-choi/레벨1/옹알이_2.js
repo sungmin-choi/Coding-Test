@@ -4,7 +4,6 @@ function solution(babbling) {
   let answer = 0;
   for (const b of babbling) {
     const m = r1.exec(b);
-    console.log(m);
     if (m) continue;
 
     const m2 = r2.exec(b);
