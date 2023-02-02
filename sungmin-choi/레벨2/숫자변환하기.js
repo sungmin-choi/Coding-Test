@@ -15,7 +15,7 @@ function inputValue(x, y, n, visited) {
     }
   }
 }
-
+// 다른풀이 DP로 풀어보기
 function solution(x, y, n) {
   const visited = Array.from({ length: y + 1 }, () => 1000000);
   visited[x] = 0;
