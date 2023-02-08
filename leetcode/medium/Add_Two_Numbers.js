@@ -4,10 +4,3 @@ var addTwoNumbers = function (l1, l2) {
     .reverse()
     .map((ele) => Number(ele));
 };
-
-console.log(
-  String(Number([0].reverse().join("")) + Number([0].reverse().join("")))
-    .split("")
-    .reverse()
-    .map((ele) => Number(ele))
-);
