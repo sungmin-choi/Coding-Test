@@ -1,5 +1,4 @@
 function solution(cards1, cards2, goal) {
-  var answer = "";
   let index1 = 0;
   let index2 = 0;
   for (const word of goal) {
