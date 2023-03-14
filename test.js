@@ -1,20 +1,45 @@
-function solution(babbling) {
-  const r1 = /(aya|ye|woo|ma)\1/;
-  const r2 = /^(aya|ye|woo|ma)+$/;
-  let answer = 0;
-  for (const b of babbling) {
-    const m = r1.exec(b);
+function solution(P) {
+  const n = P.length;
+  let cnt = 0; // 빠져나올 수 있는 출발점의 개수
+  let left = 0; // 가장 왼쪽에서 시작하는 경우
+  let right = 0; // 가장 오른쪽에서 시작하는 경우
 
-    console.log("m:", m);
-    if (m) continue;
-
-    const m2 = r2.exec(b);
-    if (!m2) continue;
-
-    answer++;
+  for (let i = 0; i < n; i++) {
+    if (P[i] === "<") {
+      left++; // 왼쪽으로 이동하는 경우 left 증가
+    } else {
+      right++; // 오른쪽으로 이동하는 경우 right 증가
+    }
+    // left와 right 중 최소값이 빠져나올 수 있는 출발점
+    cnt = Math.min(left, right);
   }
 
-  return answer;
+  return cnt;
 }
 
-solution(["yeayaye", "uuu", "yeye", "yemawoo", "yeayaayaa"]);
+console.log(solution(">>><<<"));
+
+function solution(P) {
+  const n = P.length;
+  let ans = 0;
+  for (let i = 0; i < n; i++) {
+    if (P[i] === ">") {
+      let j = i + 1;
+      while (j < n && P[j] === ">") {
+        j++;
+      }
+      if (j === n) {
+        ans++;
+      }
+    } else if (P[i] === "<") {
+      let j = i - 1;
+      while (j >= 0 && P[j] === "<") {
+        j--;
+      }
+      if (j === -1) {
+        ans++;
+      }
+    }
+  }
+  return ans;
+}

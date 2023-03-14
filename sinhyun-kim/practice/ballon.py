@@ -2,6 +2,8 @@
 https://www.acmicpc.net/problem/2346
 """
 
+
+
 from collections import deque
 temp = int(input())
 temp_list = list(map(int, input().split(" ")))
