@@ -10,18 +10,18 @@ def solution(picks, minerals):
     
     while i+5<=len(minerals):
         split_minerals = minerals[i:i+5]
-        d_cnt = split_minerals.count('diamond');
-        i_cnt = split_minerals.count('iron');
-        s_cnt = split_minerals.count('stone');
+        d_cnt = split_minerals.count('diamond')
+        i_cnt = split_minerals.count('iron')
+        s_cnt = split_minerals.count('stone')
         
         arr.append((d_cnt*25+i_cnt*5+s_cnt*1, split_minerals))
             
         i +=5
     if i<=len(minerals):
         split_minerals = minerals[i:i+(len(minerals)-i)]
-        d_cnt = split_minerals.count('diamond');
-        i_cnt = split_minerals.count('iron');
-        s_cnt = split_minerals.count('stone');
+        d_cnt = split_minerals.count('diamond')
+        i_cnt = split_minerals.count('iron')
+        s_cnt = split_minerals.count('stone')
         
         arr.append((d_cnt*25+i_cnt*5+s_cnt*1, split_minerals))
     
@@ -45,7 +45,7 @@ def solution(picks, minerals):
             answer +=25*diamond+5*iron+stone
             picks[2]=picks[2]-1
         else:
-            break;
+            break
         gok-=1
 
 
