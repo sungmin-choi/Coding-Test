@@ -1,45 +1,52 @@
-from  heapq import heappush, heappop
+from collections import deque
+import sys
+f = sys.stdin.readline
 
-
-dir = [[1,2],[1,3],[2,3],[2,4]]
-
+N, M, K, X = map(int,f().split())
+answers=[]
 INF = int(1e9)
+graph=[[] for _ in range(N+1)]
+visited = [False] * (N+1)
+distance = [INF] * (N+1)
+for i in range(M):
+    a,b = map(int,f().split())
+    graph[a].append(b)
 
-def solution(n,m,k,x,dir):
-    answer = []
-    distance = [INF] * (n+1)
-    graph = [[] for _ in range(n+1)]
+q=deque([X])
 
-    for start, end in dir:
-        graph[start].append((1,end))
+distance[X]=0
+
+
+while q:
+    node=q.popleft()
+    visited[node]=True
+    dis = distance[node]
+    for i in graph[node]:
+        if not visited[i]:
+            visited[i]=True
+            q.append(i)
+            distance[i]=dis+1
+
+
+for i in range(N+1):
+    if distance[i]==K:
+        answers.append(i)
+
+if len(answers)==0:
+    print(-1)
+else:
+    for i in answers:
+        print(i)
+
+
+        
+
+
+
+
+
+
     
-    q = []
-    heappush(q, (0, x))
-    distance[x] = 0
-    while q:
-        c, s = heappop(q)
-        for cost, end in graph[s]:
-            cost = cost +c
-            if distance[end] < cost:
-                continue
-            else:
-                distance[end] = cost
-                heappush(q,(cost, end))
-    
-    for i in range(n+1):
-        if distance[i] == k:
-            answer.append(i)
-    
-    answer.sort()
-
-    print(answer)
-
-
-
-
-
-solution(4,4,2,1,dir)
-
 
 
      
