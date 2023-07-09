@@ -23,4 +23,7 @@
 
 l = list(input())
 
+l_set = set(l)
+
+
 
